@@ -1,0 +1,21 @@
+package com.ketan.bean;
+
+public class VendorTenderAssignedDetails {
+
+	private int id;
+	private String vname;
+	private int gst_no;
+	private String edate;
+	private String email;
+	private int tender_id;
+	private String flat_type;
+	private int base_price;
+	private int highest_offered_price;
+	private String furniture;
+	private String location;
+	private String s_date;
+	private String e_date;
+	
+	
+	
+}

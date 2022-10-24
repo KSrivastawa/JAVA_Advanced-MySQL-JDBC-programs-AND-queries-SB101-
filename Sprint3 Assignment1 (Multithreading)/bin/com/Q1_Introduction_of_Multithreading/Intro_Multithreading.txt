@@ -1,0 +1,29 @@
+Q1) What do you mean by Multithreading? Why is it important?
+
+Ans: 
+
+	Introduction:
+	------------
+	- Multithreading is a process to execute multiple threads at the same time without dependency of other threads.
+	
+	Important:
+	---------
+	- Multiple tasks performed at same time(maximum uses of CPU), due to this time saved.
+	- Minimized system resource usage.
+	- Improved server responsiveness.
+	
+	for Example:
+	-----------
+	Users:  1. Raj  2.Rohan  3.Ram
+	
+	In Bank, Multiple works done at a time.
+	
+	Deposits- Raj is depositing 10000/-
+	Withdraws- Rohan is withdrawing 5000/-
+	Balance inquiry- Ram is checking his account balance.
+	
+	these all task performing at same time with the help of multiple threading process. 
+	
+	
+
+

@@ -1,0 +1,19 @@
+package com.ketan.dataBase.object;
+
+import com.ketan.bean.Administrator;
+
+public class Administrator_DAO_Impl implements Administrator_DAO {
+
+	@Override
+	public Administrator registerAdmin() {
+		Administrator ad = null;
+		
+		
+		
+		
+		
+		
+		return ad;
+	}
+
+}

@@ -1,0 +1,27 @@
+package com.ketan.bean;
+
+public class Vendor {
+
+	private int id;
+	private String name;
+	private String dob;
+	private String email;
+	private String password;
+	private int signature_id;
+	
+	public Vendor() {
+		// TODO Auto-generated constructor stub
+	}
+	
+
+	public Vendor(int id, String name, String dob, String email, String password, int signature_id) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.dob = dob;
+		this.email = email;
+		this.password = password;
+		this.signature_id = signature_id;
+	}
+	
+}

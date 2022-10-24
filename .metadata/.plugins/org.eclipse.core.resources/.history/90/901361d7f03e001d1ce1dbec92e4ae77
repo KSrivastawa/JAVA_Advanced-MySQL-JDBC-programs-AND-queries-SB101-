@@ -1,0 +1,19 @@
+package com.masai.data.access.object;
+
+public class Student_DAO_Impl implements Student_DAO {
+
+	@Override
+	public String registerStudent(String name, int marks, String email, String password) {
+		
+		String message = "Not inserted..";
+		
+		
+		
+		
+		return message;
+	}
+
+	
+	
+	
+}

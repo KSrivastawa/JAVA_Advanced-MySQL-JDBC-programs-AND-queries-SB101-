@@ -1,0 +1,47 @@
+package com.ketan.bean;
+
+public class Vendor_Tender {
+
+	private int vendor_id;
+	private int tender_id;
+	private String status_of_bid;
+	
+	Vendor_Tender(){
+		
+	}
+
+	public Vendor_Tender(int vendor_id, int tender_id, String status_of_bid) {
+		super();
+		this.vendor_id = vendor_id;
+		this.tender_id = tender_id;
+		this.status_of_bid = status_of_bid;
+	}
+
+	
+	public int getVendor_id() {
+		return vendor_id;
+	}
+
+	public void setVendor_id(int vendor_id) {
+		this.vendor_id = vendor_id;
+	}
+
+	public int getTender_id() {
+		return tender_id;
+	}
+
+	public void setTender_id(int tender_id) {
+		this.tender_id = tender_id;
+	}
+
+	public String getStatus_of_bid() {
+		return status_of_bid;
+	}
+
+	public void setStatus_of_bid(String status_of_bid) {
+		this.status_of_bid = status_of_bid;
+	}
+	
+	
+	
+}

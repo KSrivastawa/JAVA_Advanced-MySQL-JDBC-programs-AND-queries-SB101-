@@ -1,0 +1,45 @@
+package com.ketan.mainMethod;
+
+import java.util.Scanner;
+
+
+public class RegisterVendorCase {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Vendor Id:");
+		int id = sc.nextInt();
+		
+		System.out.println("Enter Vendor Name:");
+		String name = sc.next();
+		
+		System.out.println("Enter Vendor DateOfBirth(yyyy/mm/dd):");
+		String dob = sc.next();
+		
+		System.out.println("Enter Vendor email:");
+		String email = sc.next();
+		
+		System.out.println("Create Vendor password:");
+		String password = sc.next();
+		
+		Vendor vendor = new Vendor();
+		
+		vendor.setId(id);
+		vendor.setName(name);
+		vendor.setDob(dob);
+		vendor.setEmail(email);
+		vendor.setPassword(password);
+		
+		Vendor_DAO dao = new Vendor_DAO_Impl();
+		
+		String result = dao.
+		
+		System.out.println(result);
+		
+		
+
+	}
+
+}

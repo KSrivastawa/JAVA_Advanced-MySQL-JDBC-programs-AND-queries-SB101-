@@ -1,0 +1,30 @@
+package com.ketan.dataBase.object;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.ketan.Utility.DataBaseUtility;
+import com.ketan.bean.Administrator;
+
+public class Administrator_DAO_Impl implements Administrator_DAO {
+
+	@Override
+	public Administrator registerAdmin() {
+		Administrator ad = null;
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			
+			
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		
+		return ad;
+	}
+
+}

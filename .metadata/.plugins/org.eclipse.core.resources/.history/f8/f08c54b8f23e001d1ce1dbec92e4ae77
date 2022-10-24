@@ -1,0 +1,12 @@
+package com.masai.use.cases.mainMethod;
+
+public class RegisterStudentCase1 {
+
+	public static void main(String[] args) {
+		
+		
+		
+
+	}
+
+}

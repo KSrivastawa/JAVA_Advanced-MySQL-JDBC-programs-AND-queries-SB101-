@@ -1,0 +1,16 @@
+package com.masai.bean;
+
+public class StudentDataTransferObject {
+
+	private int roll;
+	private String name;
+	private String email;
+	private String cname;
+	private int fee;
+	
+	public StudentDataTransferObject() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+}

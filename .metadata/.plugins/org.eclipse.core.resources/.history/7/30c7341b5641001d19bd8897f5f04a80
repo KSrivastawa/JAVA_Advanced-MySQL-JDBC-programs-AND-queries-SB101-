@@ -1,0 +1,80 @@
+
+	|	  MySQL Database tables details:	 |
+	==========================================
+ 
+	  +------------------------------------+
+	  | Tables_in_tender_management_system |
+	  +------------------------------------+
+	  | administrator                      |
+	  | bids                               |
+	  | tenders                            |
+	  | vendor                             |
+	  | vendor_tender                      |
+	  +------------------------------------+
+ 
+ 
+ > desc administrator;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| id       | int         | NO   | PRI | NULL    |       |
+| name     | varchar(20) | YES  |     | NULL    |       |
+| dob      | date        | YES  |     | NULL    |       |
+| email    | varchar(20) | YES  | UNI | NULL    |       |
+| password | varchar(15) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+ 
+> desc bids;
++---------------+-------------+------+-----+---------+----------------+
+| Field         | Type        | Null | Key | Default | Extra          |
++---------------+-------------+------+-----+---------+----------------+
+| bid_no        | int         | NO   | PRI | NULL    | auto_increment |
+| offer_price   | int         | YES  |     | NULL    |                |
+| bid_tender    | int         | YES  | MUL | NULL    |                |
+| vendor_id     | int         | YES  | MUL | NULL    |                |
+| status_of_bid | varchar(15) | YES  |     | NULL    |                |
++---------------+-------------+------+-----+---------+----------------+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

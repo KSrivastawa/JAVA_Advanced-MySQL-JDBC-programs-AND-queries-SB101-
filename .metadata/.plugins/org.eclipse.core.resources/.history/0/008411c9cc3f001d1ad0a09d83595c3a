@@ -1,0 +1,15 @@
+package com.ketan.bean;
+
+public class Tenders {
+
+	private int tender_id;
+	private String product_name;
+	private int qty_req;
+	private String dept;
+	private String address;
+	private String s_date;
+	private String e_date;
+	
+	
+	
+}

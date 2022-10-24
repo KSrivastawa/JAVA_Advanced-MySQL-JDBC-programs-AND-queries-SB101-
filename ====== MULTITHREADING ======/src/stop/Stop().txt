@@ -1,0 +1,24 @@
+
+Q: What is Stop()?
+
+Answer:
+
+	Stop():
+	-------
+	
+		- It is a method of thread class whic is used to terminate a thread permanent.
+		
+		Syntax:
+		-------
+			A t1 = new A(); 
+			A t2 = new A(); 
+			A t3 = new A(); 
+			  t1.start();
+			  t2.start();
+			  
+			  t2.stop(); // killed permanently
+			  
+			  t3.start();
+			  
+		* now only t1 and t3 will execute.
+			  

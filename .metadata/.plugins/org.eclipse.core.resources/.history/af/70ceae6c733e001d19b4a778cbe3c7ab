@@ -1,0 +1,17 @@
+package com.masai.utility;
+
+import java.sql.Connection;
+
+public class DataBaseUtility {
+
+	public static Connection provideConnection() {
+		
+		Connection conn = null;
+		
+		
+		
+		return conn;
+		
+	}
+	
+}

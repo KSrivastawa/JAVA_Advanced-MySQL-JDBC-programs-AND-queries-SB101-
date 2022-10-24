@@ -1,0 +1,5 @@
+package com.ketan.dataBase.object;
+
+public interface Vendor_Tender_DAO {
+
+}

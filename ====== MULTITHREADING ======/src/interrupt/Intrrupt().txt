@@ -1,0 +1,16 @@
+
+Q: What is Interrupt()?
+
+Answer:
+
+	Interrupt():
+	----------
+		- It is a method of thread class that is used to interrupt the thread.
+		
+		conditions:
+		- - - - - -
+			- If any thread is in sleeping or blocked state, then we can easily interrupt the execution of thread by
+			  throwing InterruptedExeption.
+			- If thread not in sleeping or waiting state then thread execute normally. 
+			
+			

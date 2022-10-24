@@ -1,0 +1,18 @@
+package com.ketan.bean;
+
+public class Bid_Tender {
+
+	private int bid_no;             
+	private String certification_type; 
+	private String validity;           
+	private int quantity;          
+	private int price;              
+	private String product_name;
+	
+	
+	Bid_Tender(){
+		
+	}
+	
+	
+}

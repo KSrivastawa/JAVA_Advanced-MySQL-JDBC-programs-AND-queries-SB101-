@@ -1,0 +1,15 @@
+package com.ketan.bean;
+
+public class Vendor_Tender {
+
+	private int vendor_id;
+	private int tender_id;
+	private String status_of_bid;
+	
+	Vendor_Tender(){
+		
+	}
+	
+	
+	
+}

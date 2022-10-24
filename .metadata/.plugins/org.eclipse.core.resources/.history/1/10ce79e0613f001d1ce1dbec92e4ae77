@@ -1,0 +1,9 @@
+package com.ketan.dataBase.object;
+
+import com.ketan.bean.Administrator;
+
+public interface Administrator_DAO {
+
+	public Administrator registerAdmin();
+	
+}

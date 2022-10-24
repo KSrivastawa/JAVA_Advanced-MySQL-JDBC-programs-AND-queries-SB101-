@@ -1,0 +1,21 @@
+
+	|	  MySQL Database tables details:	 |
+	==========================================
+ 
+	 +------------------------------------+
+	| Tables_in_tender_management_system |
+	+------------------------------------+
+	| administrator                      |
+	| bids                               |
+	| tenders                            |
+	| vendor                             |
+	| vendor_tender                      |
+	+------------------------------------+
+ 
+ 
+ 
+ 
+
+
+
+

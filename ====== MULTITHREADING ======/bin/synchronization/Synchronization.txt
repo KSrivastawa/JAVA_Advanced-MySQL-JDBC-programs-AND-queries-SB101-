@@ -1,0 +1,65 @@
+
+Q: What is Synchronization?
+
+Answer: 
+
+	Synchronization:
+	----------------
+		- It is a technique through which we can control multiple threads or among the number of threads only
+		  one thread will enter inside the synchronized area. 
+
+	*Note:-
+	       The main purpose of Synchronization is to overcome when multiple threads are trying to access same resource
+	        at same time on that situation it may provides some wrong result.
+	        
+	      => Synchronization is broadly classified into 2 categories:
+	      1. method level Synchronization
+	      2. block level Synchronization
+	      
+	 Method level:
+	 ------------
+	 	
+	 	public void run(){
+	 	
+	 		// same resource
+	    
+	    }
+	    
+	    t1.start();  t2.start();  t3.start(); 
+	    - all 3 will run at same time then it will possible to give wrong output, to avoid this disturbance we use
+	      synchronized method.
+	      
+	    solution:
+	    - - - - - 
+	    	public synchronized void run() {
+	    		
+	    			// same resource
+	    			
+	    	 }
+	  		
+	  		  t1.start();  t2.start();  t3.start(); 
+	  		  - here if t1.start() is running then rest no one can enter inside the method, all have to wait.
+	  		   	 
+	   block level:
+	   ------------
+	   *advantage: "save time";
+	   
+	   		public void hotel(){
+	   		
+	   			synchronized(this){
+	   			  
+	   			    // same response
+	   			  
+	   			 }
+	  		
+	  		}
+	  		
+	  	  t1.start();  t2.start();  t3.start(); 
+	  
+	    	 - here in this case all 3 object will comes inside the hotel method at a time and then from there it
+	    	   decided that which is called first, that will run first rest will wait once it complete their process
+	    	   then next will run accordingly.
+	    	 
+	    	 
+	    	 
+	      

@@ -1,0 +1,18 @@
+package com.masai.data.access.object;
+
+public class Course_DAO_Impl implements Course_DAO {
+
+	@Override
+	public String registerCourse(int cid, String cname, int fee) {
+		String status =  "Not Inserted";
+		
+		
+		
+		
+		
+		
+		return status;
+	}
+
+	
+}

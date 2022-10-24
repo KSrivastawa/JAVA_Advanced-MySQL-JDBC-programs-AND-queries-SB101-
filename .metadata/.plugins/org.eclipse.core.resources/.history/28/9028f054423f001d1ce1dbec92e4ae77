@@ -1,0 +1,20 @@
+package com.masai.data.access.object;
+
+public class StudentCourse_DAO_Impl implements StudentCourse_DAO {
+
+	@Override
+	public String registerStudfentIntoCousre(int roll, int cid) throws StudentException, CourseException {
+	
+		String status = "Not Inserted";
+		
+		
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+}

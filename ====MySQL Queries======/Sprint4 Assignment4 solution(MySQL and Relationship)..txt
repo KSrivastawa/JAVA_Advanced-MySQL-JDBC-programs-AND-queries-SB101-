@@ -1,0 +1,115 @@
+mysql> create table gender(gen varchar(1) primary key);
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> insert into gender values('M');
+Query OK, 1 row affected (0.04 sec)
+
+mysql> insert into gender values('F');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into gender values('C');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from gender;
++-----+
+| gen |
++-----+
+| C   |
+| F   |
+| M   |
++-----+
+3 rows in set (0.00 sec)
+
+
+mysql> create table Faculty(FacultyID int primary key, Name varchar(20), Department varchar(30),Gender varchar(1), Salary int, Working_Hours int, Vacation_Hours int, foreign key (Gender) references gender(gen));
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> desc faculty;
++----------------+-------------+------+-----+---------+-------+
+| Field          | Type        | Null | Key | Default | Extra |
++----------------+-------------+------+-----+---------+-------+
+| FacultyID      | int         | NO   | PRI | NULL    |       |
+| Name           | varchar(20) | YES  |     | NULL    |       |
+| Department     | varchar(30) | YES  |     | NULL    |       |
+| Gender         | varchar(1)  | YES  | MUL | NULL    |       |
+| Salary         | int         | YES  |     | NULL    |       |
+| Working_Hours  | int         | YES  |     | NULL    |       |
+| Vacation_Hours | int         | YES  |     | NULL    |       |
++----------------+-------------+------+-----+---------+-------+
+7 rows in set (0.00 sec)
+
+ex:
+insert into faculty(FacultyID, Name, Department ,Gender , Salary , Working_Hours) values(001, 'Aakash', 'CS', 'M', 5000, 45),
+(002, ' Sahil', 'ES', 'M', 25000, 50),
+(003, 'John', 'HSS', 'M', 100000, 60),
+(004, 'Shelley', 'CS', 'F', 75000, 80),
+(005, 'Anannya', 'CS', 'F', 45000, 100),
+(006, 'Sia', 'HSS', 'F', 60000, 40);
+
+
+mysql> insert into faculty(FacultyID, Name, Department ,Gender , Salary , Working_Hours) values(001, 'Aakash', 'CS', 'M', 5000, 45), (002, ' Sahil', 'ES', 'M', 25000, 50),(003, 'John', 'HSS', 'M', 100000, 60), (004, 'Shelley', 'CS', 'F', 75000, 80),(005, 'Anannya', 'CS', 'F', 45000, 100),(006, 'Sia', 'HSS', 'F', 60000, 40);
+Query OK, 6 rows affected (0.01 sec)
+Records: 6  Duplicates: 0  Warnings: 0
+
+
+
+mysql> select * from faculty;
++-----------+---------+------------+--------+--------+---------------+----------------+
+| FacultyID | Name    | Department | Gender | Salary | Working_Hours | Vacation_Hours |
++-----------+---------+------------+--------+--------+---------------+----------------+
+|         1 | Aakash  | CS         | M      |   5000 |            45 |           NULL |
+|         2 |  Sahil  | ES         | M      |  25000 |            50 |           NULL |
+|         3 | John    | HSS        | M      | 100000 |            60 |           NULL |
+|         4 | Shelley | CS         | F      |  75000 |            80 |           NULL |
+|         5 | Anannya | CS         | F      |  45000 |           100 |           NULL |
+|         6 | Sia     | HSS        | F      |  60000 |            40 |           NULL |
++-----------+---------+------------+--------+--------+---------------+----------------+
+6 rows in set (0.00 sec)
+
+
+
+Q1)-
+   We would like to display this table such that if the department name is
+  ‘CS’, it gets modified to ‘Computer Science’, if it is ‘EC’ it gets modified to
+  ‘Electronics and Communication’, and if it is ‘HSS’ it gets modified to
+  ‘Humanities and Social Sciences’.
+
+  Write the query to display the modified table.
+
+
+Ans:
+
+mysql> update faculty SET Department = CASE department WHEN 'CS' THEN 'Computer Science' WHEN 'EC' THEN 'Electronics and Communication' WHEN 'HSS' THEN 'Humanities and Social Sciences' END WHERE department IN('CS','EC','HSS');
+
+Query OK, 6 row affected (0.00 sec)
+Rows matched: 6  Changed: 6  Warnings: 0
+
+mysql> select * from faculty;
++-----------+---------+--------------------------------+--------+--------+---------------+----------------+
+| FacultyID | Name    | Department                     | Gender | Salary | Working_Hours | Vacation_Hours |
++-----------+---------+--------------------------------+--------+--------+---------------+----------------+
+|         1 | Aakash  | Computer Science               | M      |   5000 |            45 |           NULL |
+|         2 |  Sahil  | Electronics and Communication  | M      |  25000 |            50 |           NULL |
+|         3 | John    | Humanities and Social Sciences | M      | 100000 |            60 |           NULL |
+|         4 | Shelley | Computer Science               | F      |  75000 |            80 |           NULL |
+|         5 | Anannya | Computer Science               | F      |  45000 |           100 |           NULL |
+|         6 | Sia     | Humanities and Social Sciences | F      |  60000 |            40 |           NULL |
++-----------+---------+--------------------------------+--------+--------+---------------+----------------+
+6 rows in set (0.00 sec)
+
+
+Q2)-
+
+
+
+
+
+
+
+
+
+
+
+
+
+

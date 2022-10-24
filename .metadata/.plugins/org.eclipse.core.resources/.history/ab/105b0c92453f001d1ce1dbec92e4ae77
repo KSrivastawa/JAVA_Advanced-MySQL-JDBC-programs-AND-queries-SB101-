@@ -1,0 +1,23 @@
+package com.masai.use.cases.mainMethod;
+
+import java.util.Scanner;
+
+public class RegisterStudentIntoCourseCase {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Roll:");
+		int roll = sc.nextInt();
+		
+		System.out.println("Enter Course Id:");
+		int cid = sc.nextInt();
+		
+		
+		
+		
+
+	}
+
+}

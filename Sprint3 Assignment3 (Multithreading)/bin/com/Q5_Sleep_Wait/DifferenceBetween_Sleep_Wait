@@ -1,0 +1,36 @@
+
+Q5/- What is the difference between the sleep and wait method?
+
+Ans:
+
+	Sleep(): 
+	-------
+	- This Method is used to pause the execution of current thread for a specified time in Milliseconds. 
+	 Here, Thread does not lose its ownership of the monitor and resume’s it’s execution
+	 
+	 - Sleep() is a static method. 
+	 
+	 - There is no need to call sleep() from Synchronized context (can be or cannot be).
+	 
+    
+    Wait():
+	------
+	-  This method is defined in object class. It tells the calling thread (a.k.a Current Thread) to wait 
+	 until another thread invoke’s the notify() or notifyAll() method for this object, The thread waits until
+	 it re-obtains the ownership of the monitor and Resume’s Execution.
+	 
+	 - Wait() is not a static method. 
+	 
+	 - Wait() should be called only from Synchronized context.
+	 
+	 
+	 Example:
+	 
+		synchronized(monitor){
+		    while(condition == true)
+		    {
+		        monitor.wait()  //releases monitor lock
+		    }
+		 
+		    Thread.sleep(100); //puts current thread on Sleep   
+		}

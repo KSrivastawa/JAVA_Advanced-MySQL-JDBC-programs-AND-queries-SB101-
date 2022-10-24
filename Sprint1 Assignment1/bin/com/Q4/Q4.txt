@@ -1,0 +1,241 @@
+Question 4: Explain Generics in Java and Its Importance with example.
+
+Ans:
+
+Generics:
+=======
+
+-->this concept is also introduced in java 1.5v.
+-->the main objective of Generics is to achieve typesafty.
+
+-->It makes the code stable by detecting the bugs at compile time.
+
+-->Generics concept mostly used with collection f/w related classes, but we can 
+apply the generics concept without collection f/w also.
+
+Note: Generics concept is not applicable with primitive data types, it supports
+only the obejcts.
+
+-->we can create our own generic classes or generic methods. and that class or 
+method can work with any kind of data.
+
+
+advantages of Generics:
+-------------------
+1.type checking at compile time.
+2.get rid of downCasting problem.
+3.data safety.
+4.reusable data.
+
+
+--with this our code will become bug(most of them detected at compile time) free and more stable.
+
+example :
+
+MyGen.java:
+-----------------
+
+package com.masai;
+
+public class MyGen<T> {
+	
+	T data;
+	
+	public MyGen(T data) {
+		this.data=data;
+	}
+	
+	public T getData() {
+		return data;
+	}
+
+}
+
+
+Demo.java:
+--------------
+
+package com.masai;
+
+public class Demo {
+
+	public static void main(String[] args) {
+		
+		MyGen<Integer> m1= new MyGen<>(10);
+		System.out.println(m1.getData());
+		
+		MyGen<String> m2=new MyGen<>("Hello");
+		System.out.println(m2.getData());
+		
+		
+		MyGen<Student> m3= new MyGen<>(new Student(10, "Ram", 500));
+		System.out.println(m3.getData());
+				
+	}
+
+}
+
+constraints in generics:
+===================
+
+--In generic classes, we can apply the contraints or bound the type parameter for a 
+perticular range by using "extends" keyword.
+
+
+ex1:
+
+class Demo<T>{
+
+}
+
+--it is unbound type, without any constraint, we can pass any type of parameter
+
+Demo<Integer> d1= new Demo<>();
+Demo<String> d1= new Demo<>();
+Demo<Student> d1= new Demo<>();
+
+
+
+ex2:
+
+class Demo <T extends X>{  // either X or any child class of X
+}
+
+--here if X is a class type then we can pass either X types elements or sub class elements of X type as parameter type.
+
+
+
+ex3:
+
+class Demo<T extends Number>{  // here Number class belongs to java.lang package 
+
+}
+
+Number class will act as a parent class, for all the wrapper classes 
+which represent the numeric data types.
+
+
+Demo<Number> d1= new Demo<>(); // valid
+Demo<Integer> d1= new Demo<>(); // valid
+Demo<Double> d1= new Demo<>(); // valid
+
+Demo<String> d1= new Demo<>(); // invalid
+
+
+--if X is an interfacem then we are able to pass either X type elements or X implementation type elements as parameter.
+
+interface Java{
+}
+
+class CoreJava implements Java{
+
+}
+
+class AdvJava implements Java{
+
+}
+
+
+class Course<T extends Java>{
+}
+
+Course<Java> c1 = new Course<>(); valid
+Course<CoreJava> c2 = new Course<>(); valid
+Course<AdvJava> c3 = new Course<>(); valid
+
+
+**Note: Bounded parameters constraints at class level are not allowing 
+"implements" keyword and "super" keyword or any type of wildcards(?).
+
+ 
+Note: In generic classes , we can use more than one type as bounded 
+parameter by using '&' operator.
+
+
+
+class Demo<T extends Number & Serializable>{
+
+}
+
+--here Demo class is able to allow the elements which must be either same 
+as Number or sub class of Number class and must implements 
+Serializable interface.
+
+
+
+Generic method:
+==============
+
+--in the MyGen class example we place get() method inside our generic class
+as a generic method.
+
+--but we can declare a generic method inside a non-generic class also.
+
+
+example:
+
+Demo.java:
+---------------
+
+package com.masai;
+
+public class Demo {
+
+	public static <T> void fun1(T t) {
+		
+		System.out.println(t);
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+	
+		fun1(0);
+		fun1("Hello");
+		
+		fun1(new Student(10, "n1", 500));
+
+		
+		
+	}
+
+}
+
+
+
+example 2: printing any type of elements:
+===================================
+
+package com.masai;
+
+public class Demo {
+
+	public static <T> void fun1(T[] tr) {
+		
+		for(T t1:tr) {
+			System.out.println(t1);
+		}
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		//Primitives are not supported
+		//int[] nums= {10,20,30,40};
+		
+		Integer[] nums= {10,20,30,40};
+		
+		String[] str= {"a","b","c"};
+		
+		fun1(str);
+		
+		fun1(nums);
+		
+		
+		
+	}
+
+}
+
+

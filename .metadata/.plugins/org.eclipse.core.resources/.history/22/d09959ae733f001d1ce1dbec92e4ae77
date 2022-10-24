@@ -1,0 +1,7 @@
+package com.ketan.dataBase.object;
+
+public interface Vendor_DAO {
+
+	public String registerVendor(String name, String date, String email, String password, int signature_id);
+	
+}

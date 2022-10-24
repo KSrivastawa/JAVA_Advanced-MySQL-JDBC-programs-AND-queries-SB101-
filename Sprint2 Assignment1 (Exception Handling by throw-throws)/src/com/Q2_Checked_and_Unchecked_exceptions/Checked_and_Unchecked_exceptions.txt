@@ -1,0 +1,91 @@
+Q2) Explain the difference between Checked and Unchecked exceptions. write some
+	examples of checked and unchecked exception classes.
+
+Ans: 
+	
+	1) Checked Exception:
+	---------------------
+	-The classes that directly inherit the Throwable class except RuntimeException and Error are known
+ 	as checked exceptions. For example, IOException, SQLException, etc. Checked exceptions are checked at
+  	compile-time.
+
+	2) Unchecked Exception:
+	-----------------------
+	-The classes that inherit the RuntimeException are known as unchecked exceptions. For example,
+	ArithmeticException, NullPointerException, ArrayIndexOutOfBoundsException, etc. Unchecked exceptions
+	are not checked at compile-time, but they are checked at runtime.
+	
+	Examples: 
+	--------
+	-Unchecked:
+	1)
+	public class JavaExceptionExample{  
+	
+	  public static void main(String args[]){ 
+	   
+	   try{  
+	      //code that may raise exception  
+	      int data=100/0;  
+	      
+	   }catch(ArithmeticException e){
+	   		System.out.println(e);
+	   }  
+	   //rest code of the program   
+	   
+	   System.out.println("rest of the code...");  
+	   
+	  }  
+	} 
+	
+	2)
+	public class UncheckedEx {  
+  
+    	public static void main(String[] args) {  
+    
+	        try  
+	        {  
+	        int arr[]= {1,3,5,7};  
+	        
+	        System.out.println(arr[10]); //may throw exception   
+	        }  
+	            // handling the array exception  
+	        catch(ArrayIndexOutOfBoundsException e)  
+	        {  
+	            System.out.println(e);  
+	        }  
+	        
+		        System.out.println("rest of the code");  
+	    }  
+	      
+	}  
+	
+	-Checked:
+	1)
+	
+	import java.io.FileNotFoundException;  
+	import java.io.PrintWriter;  
+  
+	public class CheckedEx {  
+	  
+	    public static void main(String[] args) {  
+	          
+	        PrintWriter pw; 
+	         
+	        try { 
+	         
+	            pw = new PrintWriter("jtp.txt"); //may throw exception   
+	            pw.println("saved");  
+	        }  
+	
+		// providing the checked exception handler  
+	 
+			 catch (FileNotFoundException e) {  
+	              
+	            System.out.println(e);  
+	        }    
+	             
+	    System.out.println("File saved successfully");  
+	    
+	    }  
+	}  
+	

@@ -1,0 +1,31 @@
+
+Q: What is thread priority?
+
+Answer: 
+	
+	- In Java it is possible to assign the priority of thread. 
+		- To Set these priority java thread class has provided two predefined methods.
+		1. setPriority  2. getPriority
+		
+	- The thread class has also provided three pre-defined final static variable and its value lie between 1 to 10.
+			
+			Thread.MIN_PRIORITY ---> 1
+			Thread.NORM_PRIORITY ---> 5   // by default priority set by JVM.
+			Thread.MAX_PRIORITY ---> 10
+			
+		Example:
+		--------
+			 class A {
+			 	p.s.v.m(String[] args){
+			 		
+			 		A t1 = new A();  // set 5
+			 		A t1 = new A();  // set 10
+			 		A t1 = new A();  // 1
+			 	
+			 	}
+			 }
+			 
+			* If we are not setting priority then JVM will their priority that is by default.
+			
+			
+			

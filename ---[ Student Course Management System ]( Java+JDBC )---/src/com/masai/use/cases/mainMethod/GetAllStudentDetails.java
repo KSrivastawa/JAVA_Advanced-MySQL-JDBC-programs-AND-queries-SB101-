@@ -1,0 +1,39 @@
+package com.masai.use.cases.mainMethod;
+
+import java.util.List;
+
+import com.masai.bean.Student;
+import com.masai.data.access.object.StudentException;
+import com.masai.data.access.object.Student_DAO;
+import com.masai.data.access.object.Student_DAO_Impl;
+
+public class GetAllStudentDetails {
+
+	public static void main(String[] args) {
+		
+		Student_DAO dao = new Student_DAO_Impl();
+		
+		try {
+			List<Student> list = dao.getAllStudentDetails();
+			
+			list.forEach(s->{
+				
+				System.out.println("Student Roll :"+s.getRoll());
+				System.out.println("Student Name :"+s.getName());
+				System.out.println("Student Marks :"+s.getMarks());
+				System.out.println("Student Email :"+s.getEmail());
+				
+				System.out.println("-------------------------------");
+				
+			});
+			
+		} catch (StudentException e) {
+			
+			System.out.println(e.getMessage());
+		}
+		
+		
+
+	}
+
+}

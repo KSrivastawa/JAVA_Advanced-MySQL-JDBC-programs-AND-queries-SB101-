@@ -1,0 +1,31 @@
+package com.masai.data.access.object;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.masai.utility.DataBaseUtility;
+
+public class StudentCourse_DAO_Impl implements StudentCourse_DAO {
+
+	@Override
+	public String registerStudfentIntoCousre(int roll, int cid) throws StudentException, CourseException {
+	
+		String status = "Not Inserted";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+}

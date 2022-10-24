@@ -1,0 +1,18 @@
+package com.ketan.bean;
+
+public class Administrator {
+
+	private int id;
+	private String name;
+	private String dob;
+	private String email;
+	private String password;
+	
+	public Administrator() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+	
+}

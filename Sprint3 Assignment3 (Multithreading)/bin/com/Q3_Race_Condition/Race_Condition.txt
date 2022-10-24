@@ -1,0 +1,161 @@
+
+Q4/- What is a Race condition, How will you solve the Race condition,explain with an
+   Example.
+
+Ans:
+
+	Race Condition:
+	---------------
+	- A condition in which the critical section (a part of the program where shared memory is accessed) is
+	  concurrently executed by two or more threads. It leads to incorrect behavior of a program.
+
+   * In layman terms, a race condition can be defined as, a condition in which two or more threads compete
+     together to get certain shared resources.
+
+EXAMPLE:
+--------
+
+RaceConditionProgram.java
+- - - - - - - - - - - - - 
+
+		class Counter implements Runnable  
+		{  
+			private int c = 0; 
+			 
+			public void increment()   
+			{  
+				try   
+				{  
+				Thread.sleep(10);  
+				}   
+				catch (InterruptedException e)   
+				{  
+				//Auto-generated catch block  
+				e.printStackTrace();  
+				}  
+				c++;  
+			} 
+			 
+			public void decrement()   
+			{      
+				c--;  
+			}  
+			
+			public int getValue()   
+			{  
+				return c;  
+			}  
+			
+			@Override  
+			public void run()   
+			{  
+
+				this.increment();  
+				System.out.println("Value for Thread After increment " + Thread.currentThread().getName() + " " + this.getValue());  
+
+				this.decrement();  
+				System.out.println("Value for Thread at last " + Thread.currentThread().getName() + " " + this.getValue());          
+			}  
+		}  
+		public class RaceConditionDemo  
+		{  
+			public static void main(String args[])   
+			{  
+				Counter counter = new Counter();  
+				Thread t1 = new Thread(counter, "Thread-1");  
+				Thread t2 = new Thread(counter, "Thread-2");  
+				Thread t3 = new Thread(counter, "Thread-3");  
+				t1.start();  
+				t2.start();  
+				t3.start();  
+			}      
+		}  
+
+Output:
+
+
+Value for Thread After increment Thread-1 2
+Value for Thread at last Thread-1 2
+Value for Thread After increment Thread-3 3
+Value for Thread at last Thread-3 1
+Value for Thread After increment Thread-2 2
+Value for Thread at last Thread-2 0
+	
+	
+	
+=> There are the following two solutions to avoid race conditions.
+
+1. Mutual exclusion
+2. Synchronize the process
+
+- In order to prevent the race conditions, one should ensure that only one process can access the shared 
+  data at a time. It is the main reason why we need to synchronize the processes.
+	
+AvoidRaceCondition.java
+- - - - - - - - - - - -
+
+		class Counter implements Runnable  
+		{  
+			private int c = 0;  
+			
+			public void increment()   
+			{  
+				try   
+				{  
+					Thread.sleep(10);  
+				}   
+				catch (InterruptedException e)   
+				{  
+					e.printStackTrace();  
+				}  
+				c++;  
+			}  
+			
+			public void decrement()   
+			{      
+				c--;          
+			} 
+			 
+			public int getValue()   
+			{  
+				return c;  
+			}  
+			
+			@Override  
+			public void run()   
+			{  
+				synchronized(this)  
+				{  
+	 
+					this.increment();  
+					System.out.println("Value for Thread After increment " + Thread.currentThread().getName() + " " + this.getValue());  
+		 
+					this.decrement();  
+					System.out.println("Value for Thread at last " + Thread.currentThread().getName() + " " + this.getValue());  
+				}          
+			}  
+		}  
+		public class RaceConditionDemo  
+		{  
+			public static void main(String args[])   
+			{  
+				Counter counter = new Counter();  
+				
+				Thread t1 = new Thread(counter, "Thread-1");  
+				Thread t2 = new Thread(counter, "Thread-2");  
+				Thread t3 = new Thread(counter, "Thread-3"); 
+				 
+				t1.start();  
+				t2.start();  
+				t3.start();  
+			}      
+		}  
+Output:
+
+Value for Thread After increment Thread-1 1
+Value for Thread at last Thread-1 0
+Value for Thread After increment Thread-3 1
+Value for Thread at last Thread-3 0
+Value for Thread After increment Thread-2 1
+Value for Thread at last Thread-2 0
+

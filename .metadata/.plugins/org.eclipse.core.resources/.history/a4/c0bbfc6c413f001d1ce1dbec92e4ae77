@@ -1,0 +1,14 @@
+package com.masai.bean;
+
+public class Student_Course {
+
+	private int roll;
+	private int cid;
+	
+	public Student_Course() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+}

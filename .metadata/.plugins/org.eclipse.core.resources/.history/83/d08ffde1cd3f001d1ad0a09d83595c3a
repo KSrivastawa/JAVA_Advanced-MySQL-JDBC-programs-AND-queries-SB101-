@@ -1,0 +1,35 @@
+package com.ketan.dataBase.object;
+
+import java.sql.Connection;
+import java.sql.SQLException;
+
+import com.ketan.Utility.DataBaseUtility;
+
+public class Tenders_DAO_Impl implements Tenders_DAO {
+
+	@Override
+	public String registerTenders(int tender_id, String product_name, int qty_req, String dept, String address,
+			String s_date, String e_date) {
+		
+		String status = "Not Inserted ...";
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			
+			
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+}

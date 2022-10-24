@@ -1,0 +1,10 @@
+package com.ketan.dataBase.object;
+
+import com.ketan.bean.Administrator;
+
+public interface Vendor_DAO {
+
+	public String registerVendor(
+		Administrator administrator,String name, int gst_no, String edate, String email, String password, int signature_id);
+	
+}

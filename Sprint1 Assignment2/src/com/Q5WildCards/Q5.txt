@@ -1,0 +1,223 @@
+Q5) Explain Difference between Upper Bounded Wildcards and Lower Bounded Wildcards with Example.
+
+Ans:
+
+*Upper Bounded Wildcards=>
+--------------------------
+
+-You can use an upper bounded wildcard to relax the restrictions on a variable. For example, say you want
+ to write a method that works on List<Integer>, List<Double>, and List<Number>; you can achieve this by 
+ using an upper bounded wildcard.
+
+-To declare an upper-bounded wildcard, use the wildcard character ('?'), followed by the extends keyword,
+ followed by its upper bound. Note that, in this context, extends is used in a general sense to mean either
+  "extends" (as in classes) or "implements" (as in interfaces).
+
+-To write the method that works on lists of Number and the subtypes of Number, such as Integer, Double,
+ and Float, you would specify List<? extends Number>. The term List<Number> is more restrictive than
+  List<? extends Number> because the former matches a list of type Number only, whereas the latter matches 
+  a list of type Number or any of its subclasses.
+
+> Consider the following process method:
+
+public static void process(List<? extends Foo> list) { /* ... */ }
+The upper bounded wildcard, <? extends Foo>, where Foo is any type, matches Foo and any subtype of Foo. The
+ process method can access the list elements as type Foo:
+
+	public static void process(List<? extends Foo> list) {
+	    for (Foo elem : list) {
+	        // ...
+	    }
+	}
+In the foreach clause, the elem variable iterates over each element in the list. Any method defined in the
+ Foo class can now be used on elem.
+
+> The sumOfList method returns the sum of the numbers in a list:
+
+	public static double sumOfList(List<? extends Number> list) {
+	    double s = 0.0;
+	    for (Number n : list)
+	        s += n.doubleValue();
+	    return s;
+	}
+=>The following code, using a list of Integer objects, prints sum = 6.0:
+
+	List<Integer> li = Arrays.asList(1, 2, 3);
+	System.out.println("sum = " + sumOfList(li));
+	A list of Double values can use the same sumOfList method. The following code prints sum = 7.0:
+	
+	List<Double> ld = Arrays.asList(1.2, 2.3, 3.5);
+	System.out.println("sum = " + sumOfList(ld));
+	
+Example1:
+---------
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Demo{
+	
+	
+
+	
+	public static void fun1(List<? extends Number> list) {
+		
+		System.out.println("inside fun1...");
+		
+		
+		for(Number n1:list) {
+		
+			System.out.println(n1);
+		}
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		
+	
+		List<Integer> ilist= Arrays.asList(10,20,30,40);
+		
+		List<String> slist= Arrays.asList("a","b","c","d");
+		
+		
+		fun1(ilist);
+		//fun1(slist);
+		
+	}
+
+}
+
+
+Example2:
+---------
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Demo{
+	
+	
+
+	
+	public static void fun1(List<? extends Person> list) {
+		
+		System.out.println("inside fun1...");
+		
+		for(Person p:list) {
+			
+			System.out.println(p);
+			
+			p.show();
+		}
+		
+		
+		
+	}
+	
+	public static void main(String[] args) {
+		
+		List<Student> students= Arrays.asList(
+				
+				new Student(12, "N1", 500),
+				new Student(13, "N2", 500),
+				new Student(14, "N3", 500),
+				new Student(15, "N4", 500)
+				);
+		
+		fun1(students);
+		
+		
+		
+		
+	}
+
+}
+	
+	
+	*Lower Bounded Wildcards=> 
+	------------------------------
+	
+-To write the method that works on lists of Integer and the supertypes of Integer, such as Integer, Number,
+ and Object, you would specify List<? super Integer>. The term List<Integer> is more restrictive than
+  List<? super Integer> because the former matches a list of type Integer only, whereas the latter matches
+   a list of any type that is a supertype of Integer.
+
+The following code adds the numbers 1 through 10 to the end of a list:
+
+	public static void addNumbers(List<? super Integer> list) {
+	    for (int i = 1; i <= 10; i++) {
+	        list.add(i);
+	    }
+	}
+
+Example:
+---------------
+
+package com.masai;
+
+import java.util.Arrays;
+import java.util.List;
+
+public class Demo{
+	
+	
+
+	
+	public static void fun1(List<? super Integer> list) {
+		
+		System.out.println("inside fun1...");
+		
+		for(Object obj:list) {
+			System.out.println(obj);
+		}
+		
+		
+		
+	
+	}
+	
+	public static void main(String[] args) {
+		
+		
+		List<Integer> ilist= Arrays.asList(10,20,30,40);
+		
+		List<Number> nlist= Arrays.asList(10,20,30,40);
+		
+		List<Object> olist= Arrays.asList(10,20,30,40);
+		
+		List<Double> dlist= Arrays.asList(10.55,20.44,30.33,40.33);
+		
+		
+		
+		fun1(olist);
+		fun1(nlist);
+		fun1(ilist);
+		
+		//fun1(dlist); //CE
+		
+		
+		
+		
+	}
+
+}
+
+
+example 2:
+
+public static void fun1(List<? super Student> list) {
+		
+		System.out.println("inside fun1...");
+		
+		for(Object obj:list) {
+			System.out.println(obj);
+		}
+		
+		
+		
+	
+	}
+
+--here we can call the above method by passing List of Student or 
+List of Person or List of Object.	

@@ -1,0 +1,190 @@
+
+Q2/- What’s the difference between class lock and object lock?
+
+Ans:
+
+
+Class Level locks:
+------------------
+    − This lock can be used when we want to prevent multiple threads to enter the synchronized block of
+      available instances on runtime. 
+    - This lock is used to make static data thread-safe.
+    - Multiple objects of a particular class may exist but there is always one class’s class object lock available.
+    
+    - We can get a class level lock as follows:
+
+		public class ClassLevel {
+		
+		  public void m1( ) {
+		
+		     synchronized (ClassLevel.class) {
+		
+		    // some line of code 
+		
+		  }
+		
+		}
+
+
+Example of Class Level Lock
+ - - - - - - - - - - - - - -
+
+	import java.util.*;
+
+		class Display {
+
+		    public static void wish(String name)
+		    {
+
+		        synchronized (Display.class)
+		        {
+		 
+		            for (int i = 1; i <= 10; i++) {
+
+		                System.out.print("Good Morning: ");
+
+		                try {
+		                    Thread.sleep(1000);
+		                }
+
+		                catch (InterruptedException e) {
+		                    System.out.println(e);
+		                }
+		                
+		                System.out.println(name);
+		            }
+		        }
+		    }
+		}
+		 
+		class myThread extends Thread {
+
+		    Display d;
+		    String name;
+		 
+		    myThread(Display d, String name)
+		    {
+		        this.d = d;
+		        this.name = name;
+		    }
+		    
+		    public void run()
+		    {
+		        d.wish(name);
+		    }
+		}
+
+		class Main {
+
+		    public static void main(String[] args)
+		    {
+
+		        Display d = new Display();
+
+		        myThread t1 = new myThread(d, "Dhoni");
+		        myThread t2 = new myThread(d, "Yuvraj");
+		 
+		        // Starting the threads using start() method
+		        t1.start();
+		        t2.start();
+		    }
+		}
+
+
+
+
+Object Level Locks:
+------------------
+    − This lock is used when we want a non-static method or non-static block of our code should be accessed
+      by only one thread at a time.
+    - This lock is used to make non-static data thread-safe.
+    - Every object the class have their own lock. 
+    
+    - We can get object level lock as follows:
+
+		public class ObjectLevel {
+		
+		  public void m1( ) {
+		
+		     synchronized (this) {
+		
+		        // some line of code
+		
+		     }
+		
+		  }
+		
+		}
+      
+      
+      
+
+Example of Object Level Lock
+ - - - - - - - - - - - - - -
+
+		import java.util.*;
+
+		class Display {
+
+		    public void wish(String name)
+		    {
+
+		        synchronized (this)
+		        {
+		 
+		            for (int i = 1; i <= 10; i++) {
+	
+		                System.out.print("Good Morning: ");
+
+		                try {
+d
+		                    Thread.sleep(1000);
+		                }
+
+		                catch (InterruptedException e) {
+
+		                    System.out.println(e);
+		                }
+	
+		                System.out.println(name);
+		            }
+		        }
+		    }
+		}
+		 
+
+		class myThread extends Thread {
+
+		    Display d;
+		    String name;
+
+		    myThread(Display d, String name)
+		    {
+		        this.d = d;
+		        this.name = name;
+		    }
+		 
+		    public void run()
+		    {
+		        d.wish(name);
+		    }
+		}
+		 
+		class Main {
+		 
+		    public static void main(String[] args)
+		    {
+
+		        Display d = new Display();
+
+		        myThread t1 = new myThread(d, "Dhoni");
+		        myThread t2 = new myThread(d, "Yuvraj");
+
+		        t1.start();
+		        t2.start();
+		    }
+		}
+
+
+
+

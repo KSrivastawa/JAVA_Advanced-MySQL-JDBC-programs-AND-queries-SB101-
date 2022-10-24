@@ -1,0 +1,15 @@
+package com.ketan.dataBase.object;
+
+import java.util.List;
+
+import com.ketan.bean.Bids;
+
+public interface Bids_DAO {
+
+	public String bidAgainstTender(String certification_type, String validity, int quantity, int price, int bid_tender);
+	
+	public List<Bids> viewAllBidsOf_A_Tender(int bid_tender);
+	
+	public List<Bids> viewAllBidsByBidNo(int bid_no, int bid_tender);
+	
+}

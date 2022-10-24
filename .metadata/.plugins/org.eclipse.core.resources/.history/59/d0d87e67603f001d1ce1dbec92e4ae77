@@ -1,0 +1,5 @@
+package com.ketan.bean;
+
+public class Administrator {
+
+}

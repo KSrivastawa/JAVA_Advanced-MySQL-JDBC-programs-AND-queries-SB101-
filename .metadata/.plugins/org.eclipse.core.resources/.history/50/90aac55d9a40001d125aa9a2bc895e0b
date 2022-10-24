@@ -1,0 +1,14 @@
+package com.ketan.dataBase.object;
+
+import java.util.List;
+
+import com.ketan.bean.Tenders;
+
+public interface Tenders_DAO {
+
+	public String registerTenders(int tender_id, String product_name, int qty_req, String dept, String address, String s_date,
+			String e_date);
+	
+	public List<Tenders> viewAllTendersDetails();
+	
+}

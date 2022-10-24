@@ -1,0 +1,114 @@
+package com.ketan.dataBase.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ketan.Utility.DataBaseUtility;
+import com.ketan.bean.Vendor_Tender;
+
+public class Vendor_Tender_DAO_Impl implements Vendor_Tender_DAO {
+
+	@Override
+	public String AssignVendorToTender(int vendor_id, int tender_id) throws TendersDetailsException {
+		
+		String status = "Not Assigned...";
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			
+			
+			PreparedStatement ps = conn.prepareStatement("insert into vendor_tender values(?,?)");
+			
+			ps.setInt(1, vendor_id);
+			ps.setInt(2, tender_id);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				status = "Assigned Succesfully\n";
+			}
+			else {
+				throw new TendersDetailsException("Data missing in foreign tables...");
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new TendersDetailsException("Data mismatch");
+		}
+		
+		
+		
+		return status;
+	}
+
+	@Override
+	public List<Vendor_Tender> viewAssignedDetails(int bid_tender) {
+		List<Vendor_Tender> list = new ArrayList<>();
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("Select count(bid_no) from bids group by bid_tender having bid_tender=? ");
+			
+			ps.setInt(1, bid_tender);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int count = rs.getInt("count(bid_no)");
+				
+				if(count > 2) {
+					
+					PreparedStatement ps1 = conn.prepareStatement("select vendor_id from bids where offer_price = select max(offer_price) from bids group by bid_tender having bid_tender = ?");
+					
+					ps1.setInt(1, bid_tender);
+					
+					ResultSet rs1 = ps1.executeQuery();
+					
+					if(rs1.next()) {
+						
+						
+					}
+					
+					
+					
+				}else {
+					System.out.println("Not feasible to assign vendor...");
+				}
+				
+				
+			}else {
+				System.out.println("Unable to assign - required more number of Bids for this tender...");
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			
+		}
+		
+		
+		
+		
+		return list;
+	}
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

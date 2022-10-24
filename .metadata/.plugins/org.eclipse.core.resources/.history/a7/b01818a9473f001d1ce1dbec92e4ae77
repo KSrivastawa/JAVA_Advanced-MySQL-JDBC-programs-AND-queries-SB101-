@@ -1,0 +1,92 @@
+package com.masai.data.access.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.masai.bean.StudentDataTransferObject;
+import com.masai.utility.DataBaseUtility;
+
+public class StudentCourse_DAO_Impl implements StudentCourse_DAO {
+
+	@Override
+	public String registerStudfentIntoCousre(int roll, int cid) throws StudentException, CourseException {
+	
+		String status = "Not Registered";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from student where roll = ?");
+			
+			ps.setInt(1, roll);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				PreparedStatement pc = conn.prepareStatement("select * from course where cid = ?");
+				
+				pc.setInt(1, cid);
+				
+				ResultSet rs2 = pc.executeQuery();
+				
+				if(rs2.next()) {
+					
+					PreparedStatement psc = conn.prepareStatement("insert into student_course values(?,?)");
+					
+					psc.setInt(1, roll);
+					psc.setInt(2, cid);
+					
+					int x = psc.executeUpdate();
+					
+					if(x>0) {
+						status = "Student registered into Course Successfuly..";
+					}else {
+						throw new StudentException("Technical error...");
+					}
+					
+				}
+				else
+					throw new CourseException("Invalid Course...");
+				
+				
+			}
+			else
+				throw new StudentException("Invalid Student...");
+				
+				
+			
+		} catch (SQLException e) {
+			
+			throw new StudentException(e.getMessage());
+		}
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+	
+	@Override
+	public List<StudentDataTransferObject> getAllDetailsByCourseName(String name) throws CourseException {
+		
+		List<StudentDataTransferObject> list = new ArrayList<>();
+		
+		
+		
+		
+		
+		
+		
+		return null;
+	}
+
+	
+	
+}

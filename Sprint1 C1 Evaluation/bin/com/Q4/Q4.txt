@@ -1,0 +1,35 @@
+Question 4: What will be the output of below code and why?
+		public class CheckOutput {
+		public static void main(String args[])
+
+			{
+		try
+		{
+			System.out.print("A");
+			int num = 99/0;
+			System.out.print("B");
+		}
+		catch(ArithmeticException ex)
+		{
+			System.out.print("C");
+		}
+		catch(Exception ex)
+		{
+			System.out.print("D");
+		}
+			System.out.print("E");
+		}
+		}
+		
+		
+Ans:  
+
+	It will give an exception error called  "ArithmeticException: / by Zero".
+	
+	=> In console It will print: CE
+	-here it is handled the exception.
+	
+	
+	 It is thrown when an exceptional condition has occurred in an arithmetic operation.
+	 If we divide any number by Zero, there occurs an ArithmeticException.
+

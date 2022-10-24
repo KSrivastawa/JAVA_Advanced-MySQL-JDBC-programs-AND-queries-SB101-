@@ -1,0 +1,84 @@
+package com.ketan.bean;
+
+public class Bids {
+
+	private int bid_no;                      
+	private int price;              
+	private int bid_tender;
+	private int bid_vendor;
+	private String status;
+	
+	public Bids() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Bids(int bid_no, String certification_type, String validity, int quantity, int price, int bid_tender,String status) {
+		super();
+		this.bid_no = bid_no;
+		this.certification_type = certification_type;
+		this.validity = validity;
+		this.quantity = quantity;
+		this.price = price;
+		this.bid_tender = bid_tender;
+		this.status = status;
+	}
+
+	public int getBid_no() {
+		return bid_no;
+	}
+
+	public void setBid_no(int bid_no) {
+		this.bid_no = bid_no;
+	}
+
+	public String getCertification_type() {
+		return certification_type;
+	}
+
+	public void setCertification_type(String certification_type) {
+		this.certification_type = certification_type;
+	}
+
+	public String getValidity() {
+		return validity;
+	}
+
+	public void setValidity(String validity) {
+		this.validity = validity;
+	}
+
+	public int getQuantity() {
+		return quantity;
+	}
+
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+
+	public int getPrice() {
+		return price;
+	}
+
+	public void setPrice(int price) {
+		this.price = price;
+	}
+
+	public int getBid_tender() {
+		return bid_tender;
+	}
+
+	public void setBid_tender(int bid_tender) {
+		this.bid_tender = bid_tender;
+	}
+
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
+}

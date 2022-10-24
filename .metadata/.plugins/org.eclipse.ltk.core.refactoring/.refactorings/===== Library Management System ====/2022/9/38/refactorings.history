@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename package &apos;com.Q1&apos; to &apos;book.library.system&apos;&#x0D;&#x0A;- Original project: &apos;===== Library Management System ====&apos;&#x0D;&#x0A;- Original element: &apos;===== Library Management System ====/src/com.Q1&apos;&#x0D;&#x0A;- Renamed element: &apos;===== Library Management System ====/src/book.library.system&apos;&#x0D;&#x0A;- Update references to refactored element&#x0D;&#x0A;- Update textual occurrences in comments and strings" description="Rename package &apos;com.Q1&apos;" flags="589830" hierarchical="false" id="org.eclipse.jdt.ui.rename.package" input="/src&lt;com.Q1" name="book.library.system" qualified="false" references="true" stamp="1663074468770" textual="false" version="1.0"/>
+</session>

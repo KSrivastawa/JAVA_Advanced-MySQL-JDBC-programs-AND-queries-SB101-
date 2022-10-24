@@ -1,0 +1,119 @@
+package com.masai.data.access.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.crypto.Data;
+
+import com.masai.bean.StudentDataTransferObject;
+import com.masai.utility.DataBaseUtility;
+
+public class StudentCourse_DAO_Impl implements StudentCourse_DAO {
+
+	@Override
+	public String registerStudfentIntoCousre(int roll, int cid) throws StudentException, CourseException {
+	
+		String status = "Not Registered";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from student where roll = ?");
+			
+			ps.setInt(1, roll);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				PreparedStatement pc = conn.prepareStatement("select * from course where cid = ?");
+				
+				pc.setInt(1, cid);
+				
+				ResultSet rs2 = pc.executeQuery();
+				
+				if(rs2.next()) {
+					
+					PreparedStatement psc = conn.prepareStatement("insert into student_course values(?,?)");
+					
+					psc.setInt(1, roll);
+					psc.setInt(2, cid);
+					
+					int x = psc.executeUpdate();
+					
+					if(x>0) {
+						status = "Student registered into Course Successfuly..";
+					}else {
+						throw new StudentException("Technical error...");
+					}
+					
+				}
+				else
+					throw new CourseException("Invalid Course...");
+				
+				
+			}
+			else
+				throw new StudentException("Invalid Student...");
+				
+				
+			
+		} catch (SQLException e) {
+			
+			throw new StudentException(e.getMessage());
+		}
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+	
+	@Override
+	public List<StudentDataTransferObject> getAllDetailsByCourseName(String cname) throws CourseException {
+		
+		List<StudentDataTransferObject> list = new ArrayList<>();
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select s.roll, s.name, s.email, c.cname, c.fee from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND c.cname = ?");
+			
+			ps.setString(1,cname);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int r = rs.getInt("roll");
+				String n = rs.getString("name");
+				String e = rs.getString("email");
+				String c = rs.getString("cname");
+				int f = rs.getInt("fee");
+				
+				StudentDataTransferObject sdto = new StudentDataTransferObject(r, n, e, c, f);
+				
+				list.add(sdto);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new CourseException(e.getMessage());
+		}
+		
+		
+		
+		
+		
+		return null;
+	}
+
+	
+	
+}

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename resource &apos;-[ TENDER MANAGEMENT SYSTEM ==JDBC (java-mysql)==/src/MySQL databases tables&apos; to &apos;A.MySQL databases tables&apos;" description="Rename resource &apos;MySQL databases tables&apos;" flags="7" id="org.eclipse.ltk.core.refactoring.rename.resource" input="src/MySQL databases tables" name="A.MySQL databases tables" stamp="1664607503850" updateReferences="true"/>
+</session>

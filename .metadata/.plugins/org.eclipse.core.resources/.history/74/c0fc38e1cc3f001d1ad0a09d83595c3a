@@ -1,0 +1,32 @@
+package com.ketan.bean;
+
+public class Tenders {
+
+	private int tender_id;
+	private String product_name;
+	private int qty_req;
+	private String dept;
+	private String address;
+	private String s_date;
+	private String e_date;
+	
+	public Tenders() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Tenders(int tender_id, String product_name, int qty_req, String dept, String address, String s_date,
+			String e_date) {
+		super();
+		this.tender_id = tender_id;
+		this.product_name = product_name;
+		this.qty_req = qty_req;
+		this.dept = dept;
+		this.address = address;
+		this.s_date = s_date;
+		this.e_date = e_date;
+	}
+	
+	
+	
+	
+}

@@ -1,0 +1,32 @@
+
+Q: What is Suspend() and Resume()?
+
+Answer: 
+
+	Suspend():
+	---------
+	- The main purpose of Suspend method is to put the thread from running state to waiting state.
+	
+	Example: 
+	--------
+		A t1 = new A();
+		A t1 = new A();
+		A t1 = new A();
+		
+		  t1.start();
+		  t2.start();
+		  t3.start();
+		  
+		  t2.suspend();
+		  
+		  
+	Resume():
+	---------
+	- Resume method is used to resume a suspended thread from waiting state to runnable state.
+	
+	Example:
+	--------
+		  t2.resume();
+		
+	 
+

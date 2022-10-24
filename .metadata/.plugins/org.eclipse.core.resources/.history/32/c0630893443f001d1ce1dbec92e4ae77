@@ -1,0 +1,61 @@
+package com.masai.data.access.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.masai.utility.DataBaseUtility;
+
+public class StudentCourse_DAO_Impl implements StudentCourse_DAO {
+
+	@Override
+	public String registerStudfentIntoCousre(int roll, int cid) throws StudentException, CourseException {
+	
+		String status = "Not Registered";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from student where roll = ?");
+			
+			ps.setInt(1, roll);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				PreparedStatement pc = conn.prepareStatement("select * from course where cid = ?");
+				
+				pc.setInt(1, cid);
+				
+				ResultSet rs2 = ps.executeQuery();
+				
+				if(rs2.next()) {
+					
+					
+					
+				}
+				else
+					throw new CourseException("Invalid Course...");
+				
+				
+			}
+			else
+				throw new StudentException("Invalid Student...");
+				
+				//status = "Student registered into Course Successfuly..";
+			
+		} catch (SQLException e) {
+			
+			throw new StudentException(e.getMessage());
+		}
+		
+		
+		
+		
+		return status;
+	}
+
+	
+	
+}

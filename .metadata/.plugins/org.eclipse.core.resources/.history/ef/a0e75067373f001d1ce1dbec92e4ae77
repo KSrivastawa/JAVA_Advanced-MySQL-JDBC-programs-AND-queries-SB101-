@@ -1,0 +1,118 @@
+package com.masai.data.access.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import com.masai.bean.Student;
+import com.masai.utility.DataBaseUtility;
+
+public class Student_DAO_Impl implements Student_DAO {
+
+	@Override
+	public String registerStudent(String name, int marks, String email, String password) {
+		
+		String message = "Not inserted..";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into student(name,marks,email,password) values(?,?,?,?)");
+			
+			ps.setString(1, name);
+			ps.setInt(2, marks);
+			ps.setString(3, email);
+			ps.setString(4, password);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Student Register Successfully...";
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		
+		return message;
+		
+	}
+
+	
+	@Override
+	public String registerStudent2(Student student) {
+		
+		String message = "Not inserted..";
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into student(name,marks,email,password) values(?,?,?,?)");
+			
+			ps.setString(1, student.getName());
+			ps.setInt(2, student.getMarks());
+			ps.setString(3, student.getEmail());
+			ps.setString(4, student.getPassword());
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				message = "Student Registered Successfully...";
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			message = e.getMessage();
+		}
+		
+		
+		return message;
+	}
+
+
+	@Override
+	public Student getStudentByroll(int roll) throws StudentException {
+		Student student = null;
+		
+		try(Connection conn = DataBaseUtility.provideConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("Select * from Student where roll = ?");
+			
+			ps.setInt(1, roll);
+			
+			ResultSet rs = ps.executeQuery();
+			
+			if(rs.next()) {
+				
+				int r = rs.getInt("roll");
+				String s = rs.getString("name");
+				int m = rs.getInt("marks");
+				String e = rs.getString("email");
+				String p = rs.getString("password");
+				
+				
+				student = new Student(r, e, m, e, p);
+				
+			}
+			else {
+				
+				throw new StudentException("Student does not exist with roll "+roll);
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			throw new StudentException(e.getMessage());
+		}
+		
+		
+		return student;
+	}
+
+	
+	
+	
+}

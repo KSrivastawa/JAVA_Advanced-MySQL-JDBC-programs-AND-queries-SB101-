@@ -1,0 +1,51 @@
+package com.masai.use.cases.mainMethod;
+
+import java.util.Scanner;
+
+import com.masai.bean.Student_Course;
+import com.masai.data.access.object.CourseException;
+import com.masai.data.access.object.StudentCourse_DAO;
+import com.masai.data.access.object.StudentCourse_DAO_Impl;
+import com.masai.data.access.object.StudentException;
+
+public class RegisterStudentIntoCourseCase {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter Roll:");
+		int roll = sc.nextInt();
+		
+		System.out.println("Enter Course Id:");
+		int cid = sc.nextInt();
+		
+		
+		Student_Course student_Course = new Student_Course();
+		
+		student_Course.setRoll(roll);
+		student_Course.setCid(cid);
+		
+		StudentCourse_DAO dao = new StudentCourse_DAO_Impl();
+		
+		
+			try {
+				String  result = dao.registerStudfentIntoCousre(roll, cid);
+				
+				System.out.println(result);
+				
+				
+			} catch (StudentException | CourseException e) {
+				System.out.println(e.getMessage());
+			}
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

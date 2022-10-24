@@ -1,0 +1,19 @@
+Q3) Differentiate between process and thread.
+
+Ans:
+
+	Comparison  |                  PROCESS 						 |  				THREAD
+	Basis		|												 |
+	-----------                 --------------                                   ---------------
+1. Definition	|  		A process is a program under execution	 |	A thread is a lightweight process that can be 
+				|		i.e an active program.					 |	managed independently by a scheduler.
+
+2. Blocked      |       If a process gets blocked, remaining	 | If a user level thread gets blocked,all of its
+				|		processes can continue execution.		 | peer threads also get blocked.
+
+3. Resource		|       Processes require more resources than	 | Threads generally need less resources than 
+   Consumption  |		threads.								 | processes.
+
+4. Dependency   |       Individual processes are independent     | Threads are parts of a process and so are 
+				|       of each other.							 | dependent.
+

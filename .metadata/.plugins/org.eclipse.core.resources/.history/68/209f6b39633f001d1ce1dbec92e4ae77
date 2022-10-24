@@ -1,0 +1,10 @@
+package com.ketan.mainMethod;
+
+public class RegisterAdminCase {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

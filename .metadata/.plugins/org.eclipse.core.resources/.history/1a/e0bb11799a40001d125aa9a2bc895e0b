@@ -1,0 +1,90 @@
+package com.ketan.dataBase.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import com.ketan.Utility.DataBaseUtility;
+import com.ketan.bean.Tenders;
+
+public class Tenders_DAO_Impl implements Tenders_DAO {
+
+	@Override
+	public String registerTenders(int tender_id, String flat_type, int base_price, String furniture, String location, String s_date,
+			String e_date) {
+		
+		String status = "Not Inserted ...";
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("insert into tenders values(?,?,?,?,?,?,?)");
+			
+			ps.setInt(1, tender_id);
+			ps.setString(2, product_name);
+			ps.setInt(3, qty_req);
+			ps.setString(4, dept);
+			ps.setString(5, address);
+			ps.setString(6, s_date);
+			ps.setString(7, e_date);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0)
+				status = "Registered Successfully...";
+			
+			
+		} catch (SQLException e) {
+			System.out.println(e.getMessage());
+		}
+		
+		
+		
+		return status;
+	}
+
+	
+	
+	@Override
+	public List<Tenders> viewAllTendersDetails() {
+		List<Tenders> list = new ArrayList<>(); 
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			PreparedStatement ps = conn.prepareStatement("select * from tenders");
+			
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()) {
+				
+				int ti = rs.getInt("tender_Id");
+				String pn = rs.getString("product_name");
+				int rq = rs.getInt("qty_req");
+				String dp = rs.getString("department");
+				String ad = rs.getString("address");
+				String sd = rs.getString("s_date");
+				String ed = rs.getString("e_date");
+				
+				Tenders tenders = new Tenders(ti, pn, rq, dp, ad, sd, ed);
+				
+				list.add(tenders);
+				
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			// TODO: handle exception
+		}
+		
+		
+		
+		
+		return list;
+	}
+
+	
+	
+}

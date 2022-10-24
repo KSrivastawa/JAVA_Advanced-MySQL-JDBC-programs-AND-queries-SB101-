@@ -1,0 +1,25 @@
+
+Q: What is Yield()?
+
+Answer: 
+
+	Yield():
+	-------
+	
+	- It is a method of thread class that allow us to run another thread which has same priority
+	  by passes its current thread.
+	 
+	 
+	 Syntax:
+	 -------
+	    	
+	    	A t1 = new A();
+			A t2 = new A();   // stopping this thread execution and move from running to ready state
+			A t3 = new A();
+	    	
+	    	t2.yield();  //  this will applicable when both having same priority.
+	    	
+	    	
+	    
+	    
+	    	

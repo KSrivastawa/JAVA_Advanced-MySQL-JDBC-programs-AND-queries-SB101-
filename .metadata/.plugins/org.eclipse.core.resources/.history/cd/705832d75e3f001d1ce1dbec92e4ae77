@@ -1,0 +1,12 @@
+package com.ketan.Utility;
+
+public class DataBaseUtility {
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+	}
+	
+}

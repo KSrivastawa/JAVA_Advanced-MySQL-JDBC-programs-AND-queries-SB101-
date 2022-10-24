@@ -1,0 +1,336 @@
+relationship among tables:
+====================
+
+At table level we have 3 type of relationships:
+
+1. One to One (Person -- DL , Person ---AadharCard) 
+
+2. One to many (Father--child, Teacher---Student, Dept---Emp, School---Student)
+
+3.Many to Many(Student--Course, Book--Author, Movies---Actors) 
+
+OTO:
+=====
+
+create table Person
+(
+pid int primary key,
+pname varchar(12),
+address varchar(12),
+mobile varchar(10),
+email varchar(15)
+);
+
+ex:
+mysql> desc oto_person;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| pid     | int         | NO   | PRI | NULL    |       |
+| pname   | varchar(12) | YES  |     | NULL    |       |
+| address | varchar(12) | YES  |     | NULL    |       |
+| mobile  | varchar(10) | YES  |     | NULL    |       |
+| email   | varchar(15) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+create table DL
+(
+dlid int primary key,
+issueDate date,
+expDate date,
+rto varchar(12),
+personId int unique ,
+foreign key (personId) references Person(pid)
+);
+
+ex:
+mysql> desc oto_dl;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| dlid      | int         | NO   | PRI | NULL    |       |
+| issueDate | date        | YES  |     | NULL    |       |
+| expDate   | date        | YES  |     | NULL    |       |
+| rto       | varchar(12) | YES  |     | NULL    |       |
+| personId  | int         | YES  | UNI | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+
+OTM:
+=====
+
+Dept(did, dname, location);
+
+ex:
+mysql> create table otm_Dept(did int primary key , dname varchar(20) , location varchar(20) );
+
+mysql> desc otm_dept;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| did      | int         | NO   | PRI | NULL    |       |
+| dname    | varchar(20) | YES  |     | NULL    |       |
+| location | varchar(20) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+Emp(eid, ename, address, salary, deptId ---FK refer dept(did));
+
+ex:
+
+mysql> create table otm_Emp(eid int primary key, ename varchar(20), address varchar(20), salary int, deptId int, foreign key (deptId) references otm_dept(did));
+Query OK, 0 rows affected (0.02 sec)
+
+mysql> desc otm_emp;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| eid     | int         | NO   | PRI | NULL    |       |
+| ename   | varchar(20) | YES  |     | NULL    |       |
+| address | varchar(20) | YES  |     | NULL    |       |
+| salary  | int         | YES  |     | NULL    |       |
+| deptId  | int         | YES  | MUL | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+MTM:
+=====
+
+Student(roll, sname, address, mobile)
+
+Course(cid , cname, fee, duration)
+
+Note: Whenever we have a MTM relationship we need to take the help of 3rd linking table
+
+student_course(roll, cid);
+
+
+create table student(
+roll int primary key,
+sname varchar(12),
+address varchar(12),
+mobile varchar(10)
+);
+
+mysql> desc student;
++---------+-------------+------+-----+---------+-------+
+| Field   | Type        | Null | Key | Default | Extra |
++---------+-------------+------+-----+---------+-------+
+| roll    | int         | NO   | PRI | NULL    |       |
+| sname   | varchar(12) | YES  |     | NULL    |       |
+| address | varchar(12) | YES  |     | NULL    |       |
+| mobile  | varchar(10) | YES  |     | NULL    |       |
++---------+-------------+------+-----+---------+-------+
+
+create table course(
+
+cid int primary key,
+cname varchar(12),
+fee int, 
+duration varchar(12)
+);
+
+mysql> desc course;
++----------+-------------+------+-----+---------+-------+
+| Field    | Type        | Null | Key | Default | Extra |
++----------+-------------+------+-----+---------+-------+
+| cid      | int         | NO   | PRI | NULL    |       |
+| cname    | varchar(12) | YES  |     | NULL    |       |
+| fee      | int         | YES  |     | NULL    |       |
+| duration | varchar(12) | YES  |     | NULL    |       |
++----------+-------------+------+-----+---------+-------+
+
+create table student_course
+(
+roll int,
+cid int, 
+foreign key (roll) references student(roll), 
+foreign key (cid) references course(cid)
+);
+
+mysql> desc student_course;
++-------+------+------+-----+---------+-------+
+| Field | Type | Null | Key | Default | Extra |
++-------+------+------+-----+---------+-------+
+| roll  | int  | YES  | MUL | NULL    |       |
+| cid   | int  | YES  | MUL | NULL    |       |
++-------+------+------+-----+---------+-------+
+
+mysql> insert into student values(1, 'ram', 'delhi','7894561230'),
+    ->     (2, 'ravi', 'delhi', '8965412307'),
+    ->     (3, 'chandan', 'hyd', '4578963210'),
+    ->     (4, 'venkat', 'chennai', '1203654789');
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student;
++------+---------+---------+------------+
+| roll | sname   | address | mobile     |
++------+---------+---------+------------+
+|    1 | ram     | delhi   | 7894561230 |
+|    2 | ravi    | delhi   | 8965412307 |
+|    3 | chandan | hyd     | 4578963210 |
+|    4 | venkat  | chennai | 1203654789 |
++------+---------+---------+------------+
+4 rows in set (0.00 sec)
+
+mysql> insert into course values(1000, 'java',8500,'45-days'),
+    ->     (1001, 'spring',9500,'55-days'),
+    ->     (1003, 'sql',6500, '25-days'),
+    ->     (1004, 'hibernate', 7500, '35-days');
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from course;
++------+-----------+------+----------+
+| cid  | cname     | fee  | duration |
++------+-----------+------+----------+
+| 1000 | java      | 8500 | 45-days  |
+| 1001 | spring    | 9500 | 55-days  |
+| 1003 | sql       | 6500 | 25-days  |
+| 1004 | hibernate | 7500 | 35-days  |
++------+-----------+------+----------+
+4 rows in set (0.00 sec)
+
+
+mysql> insert into student_course values(1,1004),
+    -> (2,1000),
+    -> (3, 1003),
+    -> (4,1001);
+Query OK, 4 rows affected (0.00 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> select * from student_course;
++------+------+
+| roll | cid  |
++------+------+
+|    1 | 1004 |
+|    2 | 1000 |
+|    3 | 1003 |
+|    4 | 1001 |
++------+------+
+4 rows in set (0.00 sec)
+
+//getting the Student details who enrolled in Java.
+
+
+>select s.roll, s.sname, s.address, s.mobile, c.cname, c.fee, c.duration 
+from student s INNER JOIN course c INNER JOIN student_course sc
+ON 
+s.roll = sc.roll AND c.cid=sc.cid AND c.cname='Java';
+
+ex:
+mysql> select s.roll,s.sname, s.address, s.mobile, c.cname, c.fee, c.duration from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll and c.cid = sc.cid and c.cname = 'java';
++------+-------+---------+------------+-------+------+----------+
+| roll | sname | address | mobile     | cname | fee  | duration |
++------+-------+---------+------------+-------+------+----------+
+|    2 | ravi  | delhi   | 8965412307 | java  | 8500 | 45-days  |
++------+-------+---------+------------+-------+------+----------+
+1 row in set (0.00 sec)
+
+== or ==
+
+>select s.roll, s.sname, s.address, s.mobile, c.cname, c.fee, c.duration 
+from student s, course c, student_course sc
+where
+s.roll = sc.roll AND c.cid=sc.cid AND c.cname='Java';
+
+ex:
+mysql> select s.roll,s.sname, s.address, s.mobile, c.cname, c.fee, c.duration from student s, course c, student_course sc where s.roll = sc.roll and c.cid = sc.cid and c.cname = 'java';
++------+-------+---------+------------+-------+------+----------+
+| roll | sname | address | mobile     | cname | fee  | duration |
++------+-------+---------+------------+-------+------+----------+
+|    2 | ravi  | delhi   | 8965412307 | java  | 8500 | 45-days  |
++------+-------+---------+------------+-------+------+----------+
+1 row in set (0.00 sec)
+
+
+
+mysql> insert into student_course values(1,1000);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student_course values(1,1001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student_course values(3,1001);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into student_course values(2,1003);
+Query OK, 1 row affected (0.01 sec)
+
+mysql> select * from student_course;
++------+------+
+| roll | cid  |
++------+------+
+|    1 | 1004 |
+|    2 | 1000 |
+|    3 | 1003 |
+|    4 | 1001 |
+|    1 | 1000 |
+|    1 | 1001 |
+|    3 | 1001 |
+|    2 | 1003 |
++------+------+
+8 rows in set (0.00 sec)
+
+mysql> select s.roll,s.sname, s.address, s.mobile, c.cname, c.fee, c.duration from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll and c.cid = sc.cid and c.cname = 'java';
++------+-------+---------+------------+-------+------+----------+
+| roll | sname | address | mobile     | cname | fee  | duration |
++------+-------+---------+------------+-------+------+----------+
+|    2 | ravi  | delhi   | 8965412307 | java  | 8500 | 45-days  |
+|    1 | ram   | delhi   | 7894561230 | java  | 8500 | 45-days  |
++------+-------+---------+------------+-------+------+----------+
+2 rows in set (0.00 sec)
+
+Q)- Find out all the Students Who enrolled in the course Spring.
+
+
+mysql> select s.roll,s.sname,s.address, s.mobile, c.cname, c.fee, c.duration from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND c.cname = 'spring';
++------+---------+---------+------------+--------+------+----------+
+| roll | sname   | address | mobile     | cname  | fee  | duration |
++------+---------+---------+------------+--------+------+----------+
+|    4 | venkat  | chennai | 1203654789 | spring | 9500 | 55-days  |
+|    1 | ram     | delhi   | 7894561230 | spring | 9500 | 55-days  |
+|    3 | chandan | hyd     | 4578963210 | spring | 9500 | 55-days  |
++------+---------+---------+------------+--------+------+----------+
+3 rows in set (0.00 sec)
+
+Q)- Find out all the courses details for a particular student in which he enrolled.
+
+mysql> select c.cname from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND s.sname ='venkat';
++--------+
+| cname  |
++--------+
+| spring |
++--------+
+
+mysql> select c.cname from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND s.sname ='ram';
++-----------+
+| cname     |
++-----------+
+| hibernate |
+| java      |
+| spring    |
++-----------+
+
+mysql> select c.cname from student s INNER JOIN course c INNER JOIN student_course sc ON s.roll = sc.roll AND c.cid = sc.cid AND s.sname ='ravi';
++-------+
+| cname |
++-------+
+| java  |
+| sql   |
++-------+
+
+
+
+
+select .....
+from ...
+ON (where) 
+[group by, having, order by, limit]
+
+
+DBA : DDL :-- ER diagram(Entity relationship diagram)
+Java Developer : is allowed to perform CRUD operation (DML + DRL)
+
+Create   a record   (insert)
+Retrieve  a record (select)
+Update a record (update)
+Delete  a record (delete)

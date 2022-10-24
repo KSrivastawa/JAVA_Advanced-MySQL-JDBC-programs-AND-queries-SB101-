@@ -1,0 +1,44 @@
+package com.ketan.dataBase.object;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
+import com.ketan.Utility.DataBaseUtility;
+
+public class Vendor_Tender_DAO_Impl implements Vendor_Tender_DAO {
+
+	@Override
+	public String AssignVendorToTender(int vendor_id, int tender_id) throws TendersDetailsException {
+		
+		String status = "Not Assigned...";
+		
+		try(Connection conn = DataBaseUtility.provideTenderConnection()) {
+			
+			
+			
+			PreparedStatement ps = conn.prepareStatement("insert into vendor_tender values(?,?)");
+			
+			ps.setInt(1, vendor_id);
+			ps.setInt(2, tender_id);
+			
+			int x = ps.executeUpdate();
+			
+			if(x>0) {
+				status = "Assigned Succesfully\n";
+			}
+			else {
+				throw new TendersDetailsException("Data missing in foreign tables...");
+			}
+			
+			
+		} catch (SQLException e) {
+			status = e.getMessage();
+		}
+		
+		
+		
+		return status;
+	}
+
+}

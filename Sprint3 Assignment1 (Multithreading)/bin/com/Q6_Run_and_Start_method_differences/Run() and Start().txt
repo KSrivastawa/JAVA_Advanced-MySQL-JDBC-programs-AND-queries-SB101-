@@ -1,0 +1,59 @@
+
+Q6) What if we call Java run() method directly instead start() method? 
+
+Ans: 
+
+   - The run method is just another method. If you call it directly, then it will execute not in another
+     thread, but in the current thread. If start isn't called, then the Thread created will never run. The main
+     thread will finish and the Thread will be garbage collected.
+	
+	Example:
+	-------
+		  class TestCallRun1 extends Thread{ 
+		   
+			 public void run(){  
+			   System.out.println("running...");  
+			 }  
+			 
+			 public static void main(String args[]){  
+			  TestCallRun1 t1=new TestCallRun1();  
+			  t1.run();//fine, but does not start a separate call stack  
+			 }  
+			}  
+		
+		
+		
+		   Output:
+		   -------
+		      running...
+		
+		example:
+		-------
+		
+		class TestCallRun2 extends Thread{  
+		 public void run(){  
+		  for(int i=1;i<5;i++){  
+		    try{Thread.sleep(500);}catch(InterruptedException e){System.out.println(e);}  
+		    System.out.println(i);  
+		  }  
+		 }  
+		 public static void main(String args[]){  
+		  TestCallRun2 t1=new TestCallRun2();  
+		  TestCallRun2 t2=new TestCallRun2();  
+		   
+		  t1.run();  
+		  t2.run();  
+		 }  
+		}  
+		
+		Output:
+
+			1
+			2
+			3
+			4
+			1
+			2
+			3
+			4
+		

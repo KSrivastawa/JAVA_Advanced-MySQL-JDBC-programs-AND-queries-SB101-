@@ -1,0 +1,88 @@
+package com.ketan.bean;
+
+public class Tenders {
+
+	private int tender_id;
+	private String flat_type;
+	private int base_price;
+	private String furniture;
+	private String location;
+	private String s_date;
+	private String e_date;
+	
+	public Tenders() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public Tenders(int tender_id, String product_name, int qty_req, String dept, String address, String s_date,
+			String e_date) {
+		super();
+		this.tender_id = tender_id;
+		this.product_name = product_name;
+		this.qty_req = qty_req;
+		this.dept = dept;
+		this.address = address;
+		this.s_date = s_date;
+		this.e_date = e_date;
+	}
+
+	public int getTender_id() {
+		return tender_id;
+	}
+
+	public void setTender_id(int tender_id) {
+		this.tender_id = tender_id;
+	}
+
+	public String getProduct_name() {
+		return product_name;
+	}
+
+	public void setProduct_name(String product_name) {
+		this.product_name = product_name;
+	}
+
+	public int getQty_req() {
+		return qty_req;
+	}
+
+	public void setQty_req(int qty_req) {
+		this.qty_req = qty_req;
+	}
+
+	public String getDept() {
+		return dept;
+	}
+
+	public void setDept(String dept) {
+		this.dept = dept;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getS_date() {
+		return s_date;
+	}
+
+	public void setS_date(String s_date) {
+		this.s_date = s_date;
+	}
+
+	public String getE_date() {
+		return e_date;
+	}
+
+	public void setE_date(String e_date) {
+		this.e_date = e_date;
+	}
+	
+	
+	
+	
+}

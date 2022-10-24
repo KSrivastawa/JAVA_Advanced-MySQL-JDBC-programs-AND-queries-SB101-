@@ -1,0 +1,89 @@
+
+Q1/ - Write down some predefined Functional interfaces in the java library at least 4
+	interfaces, with their methods.
+
+
+Ans:
+ 
+   => Functional interfaces are included in Java SE 8 with Lambda expressions and Method references in 
+   	  order to make code more readable, clean, and straightforward. Functional interfaces are interfaces that
+      ensure that they include precisely only one abstract method. Functional interfaces are used and executed
+      by representing the interface with an annotation called @FunctionalInterface. As described earlier, 
+      functional interfaces can contain only one abstract method. However, they can include any quantity of 
+      default and static methods. 	
+	
+	*Java SE 8 included four main kinds of functional interfaces which can be applied in multiple situations.
+	 These are:
+
+	1. Consumer
+	2. Predicate
+	3. Function 
+	4. Supplier
+	
+	=} Syntax / Prototype of Consumer Functional Interface – 
+	   ---------------------------------------------------
+
+		Consumer<Integer> consumer = (value) -> System.out.println(value);
+	
+	
+	=} Syntax of Predicate Functional Interface – 
+	   ----------------------------------------
+
+		public interface Predicate<T> {
+		 
+		    boolean test(T t);
+		 
+		}
+		
+		
+		public class CheckForNull implements Predicate {
+ 
+		    @Override
+		    public boolean test(Object o) {
+		 
+		        return o != null;
+		 
+		    }
+		}
+		
+		
+		Predicate predicate = (value) -> value != null;
+		
+		
+	=} The prototype and syntax of Function Functional Interface is given below –
+	
+		->	R apply(T t)
+
+		import java.util.function.Function;
+ 
+		// Main class
+		public class GFG {
+		 
+		    // Main driver method
+		    public static void main(String args[])
+		    {
+		        // Function which takes in a number
+		        // and returns half of it
+		        Function<Integer, Double> half = a -> a / 2.0;
+		 
+		        // Applying the function to get the result
+		        System.out.println(half.apply(10));
+		    }
+		}
+		
+		
+	=} Syntax / Prototype of Supplier Functional Interface is –
+
+		@FunctionalInterface
+		public interface Supplier<T>{
+		 
+		// gets a result
+		………….
+		 
+		// returns the specific result
+		…………
+		 
+		T.get();
+		 
+		}
+	

@@ -1,0 +1,26 @@
+package com.masai.use.cases.mainMethod;
+
+import java.util.Scanner;
+
+public class RegisterStudentCase1 {
+
+	public static void main(String[] args) {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Enter the Student Name:");
+		String name = sc.next();
+		
+		System.out.println("Enter the Student Marks:");
+		int marks = sc.nextInt();
+		
+		System.out.println("Enter the Student Email:");
+		String email = sc.next();
+		
+		System.out.println("Enter the Student Password:");
+		String password = sc.next();
+		
+
+	}
+
+}

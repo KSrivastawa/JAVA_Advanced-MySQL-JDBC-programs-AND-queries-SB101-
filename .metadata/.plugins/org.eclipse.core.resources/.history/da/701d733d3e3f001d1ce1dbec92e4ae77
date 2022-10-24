@@ -1,0 +1,15 @@
+package com.masai.bean;
+
+public class Course {
+
+	private int cid;
+	private String cname;
+	private int fee;
+	
+	public Course() {
+		// TODO Auto-generated constructor stub
+	}
+	
+	
+	
+}

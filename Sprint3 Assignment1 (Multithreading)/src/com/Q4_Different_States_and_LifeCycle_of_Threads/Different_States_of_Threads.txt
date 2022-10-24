@@ -1,0 +1,93 @@
+Q4) What are the different states of a thread, or what is thread lifecycle?
+
+Ans:
+
+ 	Life cycle of a Thread (Thread States):
+ 	======================================
+ 	
+ 	In Java, a thread always exists in any one of the following states. These states are:
+
+	1. New
+	2. Active
+	3. Blocked / Waiting
+	4. Timed Waiting
+	5. Terminated
+	
+	Explanation of Different Thread States:
+	- - - - - - - - - - - - - - - - - - - - 
+	
+	New: 
+	----
+		Whenever a new thread is created, it is always in the new state. For a thread in the new state,
+	    the code has not been run yet and thus has not begun its execution.
+	
+ 	Active:
+ 	-------
+ 		When a thread invokes the start() method, it moves from the new state to the active state. 
+ 		The active state contains two states within it: one is runnable, and the other is running.
+ 		
+ 	Blocked or Waiting:
+ 	------------------
+ 		Whenever a thread is inactive for a span of time (not permanently) then, either the thread 
+ 		is in the blocked state or is in the waiting state.
+ 		
+ 	Timed Waiting:
+ 	--------------
+ 		 Sometimes, waiting for leads to starvation. For example, a thread (its name is A) has entered 
+ 		 the critical section of a code and is not willing to leave that critical section. In such a scenario, 
+ 		 another thread (its name is B) has to wait forever, which leads to starvation. To avoid such scenario, 
+ 		 a timed waiting state is given to thread B. Thus, thread lies in the waiting state for a specific 
+ 		 span of time, and not forever. A real example of timed waiting is when we invoke the sleep() method on a 
+ 		 specific thread. The sleep() method puts the thread in the timed wait state. After the time runs out, the 
+ 		 thread wakes up and start its execution from when it has left earlier.
+ 
+ 	Terminated:
+ 	-----------
+ 		- When a thread has finished its job, then it exists or terminates normally.
+		- Abnormal termination: It occurs when some unusual events such as an unhandled exception or 
+		  segmentation fault.
+ 
+ 
+ 	Implementation of Thread States:
+ 	- - - - - - - - - - - - - - - - 
+ 
+ 1.	public static final Thread.State NEW  
+ 	
+	- It represents the first state of a thread that is the NEW state.
+ 
+ 2. public static final Thread.State RUNNABLE  
+ 
+	- It represents the runnable state.It means a thread is waiting in the queue to run.
+ 
+ 3. public static final Thread.State BLOCKED  
+ 
+	- It represents the blocked state. In this state, the thread is waiting to acquire a lock.
+ 
+ 4. public static final Thread.State WAITING  
+ 
+ 	- It represents the waiting state. A thread will go to this state when it invokes the Object.wait() method, 
+ 	  or Thread.join() method with no timeout. A thread in the waiting state is waiting for another thread to complete
+ 	  its task.	
+ 	
+ 	
+5. public static final Thread.State TIMED_WAITING  
+
+	- It represents the timed waiting state. The main difference between waiting and timed waiting is the time
+	  constraint. Waiting has no time constraint, whereas timed waiting has the time constraint. A thread invoking 
+	  the following method reaches the timed waiting state.
+ 	
+ 	> sleep
+	> join with timeout
+	> wait with timeout
+	> parkUntil
+	> parkNanos
+	
+
+6. public static final Thread.State TERMINATED 
+ 
+	- It represents the final state of a thread that is terminated or dead. A terminated thread means it has completed
+	  its execution.
+	
+	
+	
+	

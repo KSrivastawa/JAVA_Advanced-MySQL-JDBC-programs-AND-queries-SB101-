@@ -1,0 +1,8 @@
+package com.masai.data.access.object;
+
+public interface Course_DAO {
+
+	public String registerCourse(int cid, String cname, int fee);
+	
+	
+}

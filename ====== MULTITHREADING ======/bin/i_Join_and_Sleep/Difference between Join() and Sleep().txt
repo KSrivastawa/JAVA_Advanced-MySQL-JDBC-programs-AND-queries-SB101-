@@ -1,0 +1,39 @@
+
+Q: Difference between Sleep() and Join()?
+
+Answer: 
+
+	sleep():
+	--------
+	
+	- It is used to put a thread into temporary waiting sate.
+	
+	- Sleep is static method of thread class which throws checked exception i.e IntrruptedException.
+	
+	- The main purpose of sleep method is to put a thread into temporary waiting state.
+	
+	Syntax: Thread.Sleep(1000);  (in milliseconds).
+			or Thread t = new Thread();
+					t.Sleep(1000);
+	
+	
+	join():
+	-------
+	
+	- It is used to put the parent thread into temporarily waiting state till the completion of child thread.
+ 
+	- The main purpose of join method is to put the thread into temporary waiting state, if we want to execute 
+	  completer any particular thread among all the threads available in the thread pool.
+	  
+	- Join method also throw a checked exception i.e. InterruptedException.
+	
+	Syntax: A t1 = new A();
+			A t2 = new A();
+			A t3 = new A();
+			
+			  t2.join();
+ 
+ 
+ 
+ 
+ 
